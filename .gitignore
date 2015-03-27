@@ -11,7 +11,6 @@ node_modules/*
 # We want this even if the folder content is ignored
 !.gitkeep
 !*.md
-!plugins/*.json
 
 # Phonegap.gitignore
 # https://github.com/crilleengvall/gitignore/blob/master/Phonegap.gitignore

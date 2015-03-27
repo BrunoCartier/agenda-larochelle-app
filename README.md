@@ -26,6 +26,15 @@ Be sure to update to latest versions for:
 
 ### Developping
 
+#### Install all what's in "Tools"
+
+#### Install Cordova plugins
+```bash
+cordova plugin add com.ionic.keyboard
+cordova plugin add org.apache.cordova.statusbar
+```
+
+#### Serve
 Launch a development server with LiveReload using this awesome and so magical command:
 
 `gulp dev`
