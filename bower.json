@@ -1,5 +1,6 @@
 {
   "name": "ak-ionic-tpl",
+  "license": "Fair",
   "private": "true",
   "dependencies": {
     "ionic": "1.0.0-rc.1",

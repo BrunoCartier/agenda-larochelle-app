@@ -31,3 +31,6 @@ Launch a development server with LiveReload using this awesome command:
 
 ### Structure
 There is only one important folder (app), the others are just here not to disturb our tools.
+
+### License
+See the [LICENSE](https://github.com/ActivKonnect/ak-ionic-tpl/blob/master/LICENSE) file.
