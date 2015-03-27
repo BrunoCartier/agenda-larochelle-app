@@ -27,6 +27,17 @@ Be sure to update to latest versions for:
 ### Developping
 
 #### Install all what's in "Tools"
+Good luck ;p
+
+#### Getting started
+- Clone this boilerplate where you need
+- **Before any Cordova-related stuff**
+Replace all occurences of `akIonicTpl`, in the project with a relevant things.
+Customize bower.json, package.json, ionic.project & **config.xml** (very important)
+with suitable information.
+- `bower install`, `npm install`
+- `cordova platform add android` (or iOS, as you wish)
+
 
 #### Install Cordova plugins
 ```bash

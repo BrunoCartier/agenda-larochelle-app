@@ -146,7 +146,7 @@
             .pipe(gulp.dest('www/assets/'));
 
         // Step 3: Copy the fonts
-        gulp.src(['bower_components/ionic/release/fonts/*', 'app/**/*.ttf'])
+        gulp.src(['bower_components/ionic/release/fonts/*']) // Add yours if needed
             .pipe(rename({
                 dirname: ''
             }))
