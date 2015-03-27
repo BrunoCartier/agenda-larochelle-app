@@ -20,6 +20,7 @@ Be sure to update to latest versions for:
 - Bower (`npm install -g bower` → `bower -v` → 1.3.12)
 - Cordova (`npm install -g cordova` → `cordova -v` → 2.7.3)
 - Ionic CLI (`npm install -g ionic` → `ionic -v` → 1.3.18)
+- Gulp (`npm install -g gulp` → `gulp -v` → 3.8.11)
 
 **Yeah, you got some nice tools there :)**
 

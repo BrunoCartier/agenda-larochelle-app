@@ -1,0 +1,10 @@
+{
+  "name": "ak-ionic-tpl",
+  "license": "Fair",
+  "private": "true",
+  "devDependencies": {
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-util": "^3.0.4"
+  }
+}
