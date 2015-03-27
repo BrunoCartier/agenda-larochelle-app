@@ -35,6 +35,7 @@ Good luck ;p
 Replace all occurences of `akIonicTpl`, in the project with a relevant things.
 Customize bower.json, package.json, ionic.project & **config.xml** (very important)
 with suitable information.
+- Replace icon.png (you can do it later)
 - `bower install`, `npm install`
 - `cordova platform add android` (or iOS, as you wish)
 

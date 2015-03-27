@@ -51,6 +51,19 @@
             .pipe(gulp.dest('app/'));
     });
 
+    gulp.task('icon', function (cb) {
+        exec('node node_modules/cordova-icon/bin/cordova-icon',
+            function (err, stdout) {
+                if (!err) {
+                    util.log(stdout);
+                } else {
+                    util.log(util.colors.red(err));
+                }
+
+                cb();
+            });
+    });
+
     // Public tasks
 
     gulp.task('default', function () {
@@ -107,7 +120,7 @@
         });
     });
 
-    gulp.task('build', ['less', 'clean:www', 'jslint'], function () {
+    gulp.task('build', ['less', 'clean:www', 'jslint', 'icon'], function () {
         // Step 1: Useref
         var assets = useref.assets();
 
