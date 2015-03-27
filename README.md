@@ -26,9 +26,9 @@ Be sure to update to latest versions for:
 
 ### Developping
 
-Launch a development server with LiveReload using this awesome command:
+Launch a development server with LiveReload using this awesome and so magical command:
 
-`ionic serve --livereload --lab`
+`gulp dev`
 
 ### Structure
 There is only one important folder (app), the others are just here not to disturb our tools.

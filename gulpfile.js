@@ -1,7 +1,7 @@
-/*jslint indent: 4, maxlen: 100 */
-/*global require */
+/*jslint indent: 4, maxlen: 100, nomen: true */
+/*globals require, __dirname */
 
-(function (r) {
+(function (r, ENV_DIR_NAME) {
     'use strict';
 
     var // Constants
@@ -10,9 +10,13 @@
         // Require, gulp stuff
         gulp = r('gulp'),
         util = r('gulp-util'),
+        less = r('gulp-less'),
+        plumber = r('gulp-plumber'),
 
         // Require, node stuff
         del = r('del'),
+        path = r('path'),
+        spawn = r('child_process').spawn,
         exec = r('child_process').exec;
 
     // Private tasks
@@ -23,6 +27,15 @@
 
     gulp.task('clean:bower', function (cb) {
         del(['bower_components/**/**/*', '!bower_components/.gitkeep'], cb);
+    });
+
+    gulp.task('less', function () {
+        return gulp.src('app/**/**/*.less')
+            .pipe(plumber())
+            .pipe(less({
+                paths: [path.join(ENV_DIR_NAME, 'less', 'includes')]
+            }))
+            .pipe(gulp.dest('app/'));
     });
 
     // Public tasks
@@ -38,7 +51,7 @@
     });
 
     gulp.task('jslint', function (cb) {
-        exec('jslint app/**/*.js', function (err, stdout) {
+        exec('jslint gulpfile.js app/**/*.js', function (err, stdout) {
             util.log(util.colors.bold('JSLint validation ❤'));
 
             if (!err) {
@@ -54,4 +67,30 @@
             cb();
         });
     });
-}(require));
+
+    gulp.task('dev', function (cb) {
+        var ionicServer;
+
+        gulp.watch('app/**/*.less', ['less']);
+
+        util.log(util.colors.bold(
+            'Ionic Server will launch, but you wont be able to interact with it.'
+        ));
+
+        ionicServer = spawn('ionic', ['serve', '--livereload', '--lab']);
+
+        ionicServer.stdout.on('data', function (buffer) {
+            util.log(buffer.toString());
+        });
+
+        ionicServer.on('error', function (error) {
+            util.log('Ionic server error' + error);
+            cb();
+        });
+
+        ionicServer.on('exit', function (code) {
+            util.log('Ionic server exit' + code);
+            cb();
+        });
+    });
+}(require, __dirname));

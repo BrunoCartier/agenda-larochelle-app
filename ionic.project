@@ -3,6 +3,8 @@
   "app_id": "",
   "documentRoot": "./",
   "watchPatterns": [
-    "app/**/*"
+    "app/**/*.js",
+    "app/**/*.css",
+    "app/**/*.html"
   ]
 }
