@@ -8,8 +8,10 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <title>ActivKonnect Ionic Template</title>
 
+    <!-- build:css assets/global.css -->
     <link href="../bower_components/ionic/release/css/ionic.min.css" rel="stylesheet">
     <link href="global/style/global.css" rel="stylesheet">
+    <!-- endbuild -->
 </head>
 <body ng-app="akIonicTpl">
 <ion-pane>
@@ -23,12 +25,20 @@
         <p><i class="icon ion-heart assertive"></i></p>
         <p><i class="icon ion-ionic positive"></i></p>
         <p><em>swag</em></p>
+
+        <ak-test-directive></ak-test-directive>
     </ion-content>
 </ion-pane>
 
 <script src="cordova.js" type="text/javascript"></script><!-- 404 during dev -->
-<script src="../bower_components/ionic/release/js/ionic.bundle.min.js" type="text/javascript"></script>
-<script src="../bower_components/ngCordova/dist/ng-cordova.min.js" type="text/javascript"></script>
-<script src="global/main.js" type="text/javascript"></script>
+
+<!-- build:js assets/global.js -->
+<script src="../bower_components/ionic/release/js/ionic.bundle.min.js"></script>
+<script src="../bower_components/ngCordova/dist/ng-cordova.min.js"></script>
+<script src="global/main.js"></script>
+<script src="global/directives.global.js"></script>
+<!-- endbuild -->
+
+<script src="assets/templates.js"></script><!-- 404 during dev, just for nice on-device optimization -->
 </body>
 </html>

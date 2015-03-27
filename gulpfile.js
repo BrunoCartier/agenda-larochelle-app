@@ -5,19 +5,32 @@
     'use strict';
 
     var // Constants
-        PUBLICLY_AVAILABLE = ['default', 'jslint'],
+        ANGULAR_APP_NAME = 'akIonicTpl', // Don't forget to change this!
+        PUBLICLY_AVAILABLE = ['default', 'dev', 'build', 'jslint'],
+        JS_FILTER,
+        CSS_FILTER,
 
         // Require, gulp stuff
         gulp = r('gulp'),
         util = r('gulp-util'),
         less = r('gulp-less'),
         plumber = r('gulp-plumber'),
+        useref = r('gulp-useref'),
+        filter = r('gulp-filter'),
+        uglify = r('gulp-uglify'),
+        minifyCss = r('gulp-minify-css'),
+        replace = r('gulp-replace'),
+        templateCache = r('gulp-angular-templatecache'),
+        rename = r('gulp-rename'),
 
         // Require, node stuff
         del = r('del'),
         path = r('path'),
         spawn = r('child_process').spawn,
         exec = r('child_process').exec;
+
+    JS_FILTER = filter('**/*.js');
+    CSS_FILTER = filter('**/*.css');
 
     // Private tasks
 
@@ -68,7 +81,7 @@
         });
     });
 
-    gulp.task('dev', function (cb) {
+    gulp.task('dev', ['less'], function (cb) {
         var ionicServer;
 
         gulp.watch('app/**/*.less', ['less']);
@@ -92,5 +105,51 @@
             util.log('Ionic server exit' + code);
             cb();
         });
+    });
+
+    gulp.task('build', ['less', 'clean:www', 'jslint'], function () {
+        // Step 1: Useref
+        var assets = useref.assets();
+
+        gulp.src('app/index.html')
+
+            // Take all referenced assets in index.html
+            .pipe(assets)
+
+            // JS concat & soft minify
+            .pipe(JS_FILTER)
+            .pipe(uglify({
+                mangle: false,
+                compress: false
+            }))
+            .pipe(JS_FILTER.restore())
+
+            // CSS concat & soft minify, with paths fix
+            .pipe(CSS_FILTER)
+            .pipe(minifyCss({
+                noAdvanced: true
+            }))
+            .pipe(replace('../../', '../'))
+            .pipe(replace('../img/', '../global/img/'))
+            .pipe(CSS_FILTER.restore())
+
+            // We're good to go
+            .pipe(assets.restore())
+            .pipe(useref())
+            .pipe(gulp.dest('www/'));
+
+        // Step 2: Partials caching
+        gulp.src('app/**/*.partial.html')
+            .pipe(templateCache({
+                module: ANGULAR_APP_NAME
+            }))
+            .pipe(gulp.dest('www/assets/'));
+
+        // Step 3: Copy the fonts
+        gulp.src(['bower_components/ionic/release/fonts/*', 'app/**/*.ttf'])
+            .pipe(rename({
+                dirname: ''
+            }))
+            .pipe(gulp.dest('www/fonts/'));
     });
 }(require, __dirname));
