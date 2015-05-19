@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="fr.agenda-larochelle"
+        version="0.0.1"
+        xmlns="http://www.w3.org/ns/widgets"
+        xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Agenda La Rochelle</name>
+    <description>
+        Application mobile simple, contenant les évènements à La Rochelle.
+    </description>
+    <author email="mail@brunocartier.fr" href="http://deur.co">
+        Bruno Cartier
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <!-- Global preferences -->
+    <preference name="Fullscreen" value="false" />
+    <preference name="Orientation" value="portrait" />
+    <!-- Android + iOS -->
+    <preference name="WebViewBounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <!-- iOS -->
+    <preference name="BackupWebStorage" value="local" />
+    <!-- Android - Awesome: http://goo.gl/KYZQnx -->
+    <preference name="android-minSdkVersion" value="14" />
+    <preference name="android-targetSdkVersion" value="16" />
+</widget>

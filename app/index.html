@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+    <title>Agenda La Rochelle</title>
+
+    <!-- build:css assets/global.css -->
+    <link href="../bower_components/ionic/release/css/ionic.min.css" rel="stylesheet">
+    <link href="global/style/global.css" rel="stylesheet">
+    <!-- endbuild -->
+</head>
+<body ng-app="agendaLr">
+<ion-pane>
+    <ion-header-bar class="bar-calm">
+        <h1 class="title">Agenda La Rochelle</h1>
+    </ion-header-bar>
+
+    <ion-content class="has-header padding">
+        <h1>Agenda La Rochelle</h1>
+        <h2>Coming soon !</h2>
+        <p><i class="icon ion-heart assertive"></i></p>
+        <p><i class="icon ion-ionic positive"></i></p>
+
+        <ak-test-directive></ak-test-directive>
+    </ion-content>
+</ion-pane>
+
+<script src="cordova.js" type="text/javascript"></script><!-- 404 during dev -->
+
+<!-- build:js assets/global.js -->
+<script src="../bower_components/ionic/release/js/ionic.bundle.min.js"></script>
+<script src="global/main.js"></script>
+<script src="global/directives.global.js"></script>
+<!-- endbuild -->
+
+<script src="assets/templates.js"></script><!-- 404 during dev, just for nice on-device optimization -->
+</body>
+</html>

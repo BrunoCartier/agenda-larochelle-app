@@ -1,0 +1,10 @@
+{
+  "name": "agenda-larochelle",
+  "app_id": "",
+  "documentRoot": "./",
+  "watchPatterns": [
+    "app/**/*.js",
+    "app/**/*.css",
+    "app/**/*.html"
+  ]
+}

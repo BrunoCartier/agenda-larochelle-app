@@ -1,0 +1,10 @@
+{
+  "name": "agenda-larochelle",
+  "license": "MIT",
+  "dependencies": {
+    "ionic": "1.0.0"
+  },
+  "devDependencies": {
+    "lesshat": "~3.0.2"
+  }
+}
