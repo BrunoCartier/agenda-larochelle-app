@@ -5,15 +5,16 @@
     'use strict';
 
     var app = ng.module('akIonicTpl', [
-        'ionic',
-        'ngCordova'
+        'ionic'
     ]);
 
     app.run(['$ionicPlatform', function ($ionicPlatform) {
         /*global window */
         // https://github.com/driftyco/ionic-starter-tabs/blob/master/js/app.js#L10
         $ionicPlatform.ready(function () {
-            if (window.cordova && window.cordova.plugins.Keyboard) {
+            if (window.cordova &&
+                window.cordova.plugins &&
+                window.cordova.plugins.Keyboard) {
                 window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             }
 

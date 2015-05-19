@@ -144,6 +144,7 @@
             }))
             .pipe(replace('../../', '../'))
             .pipe(replace('../img/', '../global/img/'))
+            .pipe(replace('assets/fonts', 'fonts'))
             .pipe(CSS_FILTER.restore())
 
             // We're good to go
@@ -163,6 +164,6 @@
             .pipe(rename({
                 dirname: ''
             }))
-            .pipe(gulp.dest('www/fonts/'));
+            .pipe(gulp.dest('www/assets/fonts/'));
     });
 }(require, __dirname));

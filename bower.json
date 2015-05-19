@@ -3,8 +3,7 @@
   "license": "Fair",
   "private": "true",
   "dependencies": {
-    "ionic": "1.0.0-rc.1",
-    "ngCordova": "0.1.12-alpha"
+    "ionic": "1.0.0"
   },
   "devDependencies": {
     "lesshat": "~3.0.2"
