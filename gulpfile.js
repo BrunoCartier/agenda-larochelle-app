@@ -39,7 +39,7 @@
     });
 
     gulp.task('clean:bower', function (cb) {
-        del(['bower_components/**/**/*', '!bower_components/.gitkeep'], cb);
+        del(['app/bower_components/**/**/*', '!app/bower_components/.gitkeep'], cb);
     });
 
     gulp.task('less', function () {
@@ -160,7 +160,7 @@
             .pipe(gulp.dest('www/assets/'));
 
         // Step 3: Copy the fonts
-        gulp.src(['bower_components/ionic/release/fonts/*']) // Add yours if needed
+        gulp.src(['app/bower_components/ionic/release/fonts/*']) // Add yours if needed
             .pipe(rename({
                 dirname: ''
             }))
