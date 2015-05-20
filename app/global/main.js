@@ -48,5 +48,27 @@
                 }
             }
         });
+
+        // Agenda
+
+        $stateProvider.state('main.agenda', {
+            url: '/agenda',
+            views: {
+                'agenda': {
+                    templateUrl: 'global/partials/agenda.partial.html'
+                }
+            }
+        });
+
+        // Settings
+
+        $stateProvider.state('main.settings', {
+            url: '/settings',
+            views: {
+                'settings': {
+                    templateUrl: 'global/partials/settings.partial.html'
+                }
+            }
+        });
     }]);
 }(angular));
