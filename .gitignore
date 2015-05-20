@@ -2,7 +2,7 @@
 www/*
 platforms/*
 plugins/*
-bower_components/*
+app/bower_components/*
 node_modules/*
 .idea/*
 *.css
