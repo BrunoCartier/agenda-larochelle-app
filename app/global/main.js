@@ -23,4 +23,30 @@
             }
         });
     }]);
+
+    app.config(['$stateProvider', '$urlRouterProvider', function (
+        $stateProvider,
+        $urlRouterProvider
+    ) {
+        // Base stuff
+
+        $stateProvider.state('main', {
+            url: '/main',
+            abstract: true,
+            templateUrl: 'global/partials/main.partial.html'
+        });
+
+        $urlRouterProvider.otherwise('/main/events');
+
+        // Events
+
+        $stateProvider.state('main.events', {
+            url: '/events',
+            views: {
+                'events': {
+                    templateUrl: 'global/partials/events.partial.html'
+                }
+            }
+        });
+    }]);
 }(angular));
