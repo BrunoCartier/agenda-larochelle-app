@@ -5,7 +5,9 @@
     'use strict';
 
     var app = ng.module('agendaLr', [
-        'ionic'
+        'ionic',
+        'agendaLr.services',
+        'agendaLr.controllers'
     ]);
 
     app.run(['$ionicPlatform', function ($ionicPlatform) {
@@ -44,6 +46,7 @@
             url: '/events',
             views: {
                 'events': {
+                    controller: 'EventsController',
                     templateUrl: 'global/partials/events.partial.html'
                 }
             }

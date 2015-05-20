@@ -1,5 +1,12 @@
 <ion-view view-title="Accueil">
     <ion-content>
-        <h3 class="padding">Prochains évènements</h3>
+        <h3 class="padding-top padding-left">Prochains évènements</h3>
+
+        <div class="list">
+            <a class="item"
+               ng-repeat="event in DataService.getAll()">
+                <h2 ng-bind-html="event.titre"></h2>
+            </a>
+        </div>
     </ion-content>
 </ion-view>
