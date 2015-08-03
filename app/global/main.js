@@ -52,6 +52,16 @@
             }
         });
 
+        $stateProvider.state('main.event', {
+            url: '/event/:eventId',
+            views: {
+                'events': {
+                    controller: 'EventController',
+                    templateUrl: 'global/partials/event.partial.html'
+                }
+            }
+        });
+
         // Agenda
 
         $stateProvider.state('main.agenda', {

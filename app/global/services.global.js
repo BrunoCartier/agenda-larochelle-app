@@ -16,6 +16,7 @@
 
         DEMO_DATA = {
             14970: {
+                "id": 14970,
                 "titre": "Assembl&eacute;es g&eacute;n&eacute;rales des Comit&eacute;s de quartier",
                 "date_debut": "30-09-2014",
                 "date_fin": "11-10-2014",
@@ -29,6 +30,7 @@
                 "complement": null
             },
             14969: {
+                "id": 14969,
                 "titre": "Exposition | Quand l'image est un outil de repr&eacute;sentation",
                 "date_debut": "23-11-2014",
                 "date_fin": "23-11-2014",

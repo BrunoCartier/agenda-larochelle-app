@@ -12,4 +12,12 @@
     ) {
         self.DataService = DataService;
     }]);
+
+    controllers.controller('EventController', ['$scope', '$stateParams', 'DataService', function (
+        self,
+        $stateParams,
+        DataService
+    ) {
+        self.event = DataService.get($stateParams.eventId);
+    }]);
 }(angular));
