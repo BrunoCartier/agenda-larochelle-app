@@ -20,7 +20,7 @@
                 "date_debut": "30-09-2014",
                 "date_fin": "11-10-2014",
                 "lieu": null,
-                "categorie": null,
+                "categorie": "Fausse catégorie",
                 "description": "Comit\u00e9 de quartier de Laleu - La Pallice - La Rossignolette" +
                     "<br \/>Samedi 11 octobre \u00e0 15h \u00e0 la salle de la Pallice, " +
                     "42 Bvd Delmas&#160;30 septembre \u00e0 13h30<br \/>" +

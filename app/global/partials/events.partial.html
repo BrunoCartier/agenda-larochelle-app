@@ -3,9 +3,23 @@
         <h3 class="padding-top padding-left">Prochains évènements</h3>
 
         <div class="list">
-            <a class="item"
-               ng-repeat="event in DataService.getAll()">
+            <a class="item item-icon-right"
+               ng-repeat="event in DataService.getAll()"
+               ui-sref="main.event({eventId: event.id})">
                 <h2 ng-bind-html="event.titre"></h2>
+
+                <i class="icon ion-chevron-right"></i>
+
+                <p ng-if="event.categorie">
+                    <em ng-bind-html="event.categorie"></em>
+                </p>
+
+                <p>
+                    {{ event.date_debut }}
+                    <span ng-if="event.date_debut !== event.date_fin">
+                        → {{ event.date_fin }}
+                    </span>
+                </p>
             </a>
         </div>
     </ion-content>
