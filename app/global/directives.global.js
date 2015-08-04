@@ -6,10 +6,17 @@
 
     var app = ng.module('akIonicTpl');
 
-    app.directive('akTestDirective', [function () {
+    app.directive('akIonicVersion', [function () {
+        var controller;
+
+        controller = ['$window', '$scope', function ($window, self) {
+            self.version = $window.ionic.version;
+        }];
+
         return {
             restrict: 'E',
-            templateUrl: 'global/partials/test-directive.partial.html',
+            controller: controller,
+            templateUrl: 'global/partials/ionic-version.partial.html',
             scope: true
         };
     }]);
