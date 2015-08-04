@@ -22,6 +22,7 @@
         replace = r('gulp-replace'),
         templateCache = r('gulp-angular-templatecache'),
         rename = r('gulp-rename'),
+        serve = r('gulp-serve'),
 
         // Require, node stuff
         del = r('del'),
@@ -125,6 +126,11 @@
             cb();
         });
     });
+
+    gulp.task('show', ['build'], serve({
+        root: 'www',
+        port: 8101
+    }));
 
     gulp.task('build', ['less', 'clean:www', 'jslint', 'icon'], function () {
         // Step 1: Useref

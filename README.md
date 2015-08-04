@@ -58,6 +58,10 @@ Launch a development server with LiveReload using this awesome and so magical co
 
 `gulp dev`
 
+See results for the built version with:
+
+`gulp show` (and open your browser on [localhost:8101](http://localhost:8101/))
+
 ### Structure
 There is only one important folder (app), the others are just here not to disturb our tools.
 
