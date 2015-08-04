@@ -6,7 +6,7 @@
 
     var // Constants
         ANGULAR_APP_NAME = 'akIonicTpl', // Don't forget to change this!
-        PUBLICLY_AVAILABLE = ['default', 'dev', 'build', 'jslint'],
+        PUBLICLY_AVAILABLE = ['default', 'dev', 'show', 'build', 'jslint'],
         JS_FILTER,
         CSS_FILTER,
 

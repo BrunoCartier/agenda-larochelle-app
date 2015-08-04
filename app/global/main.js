@@ -9,7 +9,6 @@
     ]);
 
     app.run(['$ionicPlatform', function ($ionicPlatform) {
-        /*global window */
         // https://github.com/driftyco/ionic-starter-tabs/blob/master/js/app.js#L10
         $ionicPlatform.ready(function () {
             if (win.cordova &&
