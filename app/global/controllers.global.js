@@ -10,7 +10,9 @@
         self,
         DataService
     ) {
-        self.DataService = DataService;
+        DataService.getAll().then(function onSuccess(events) {
+            self.events = events;
+        });
     }]);
 
     controllers.controller('EventController', ['$scope', '$stateParams', 'DataService', function (
@@ -18,6 +20,8 @@
         $stateParams,
         DataService
     ) {
-        self.event = DataService.get($stateParams.eventId);
+        DataService.get($stateParams.eventId).then(function (event) {
+            self.event = event;
+        });
     }]);
 }(angular));

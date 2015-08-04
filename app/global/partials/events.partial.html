@@ -4,20 +4,20 @@
 
         <div class="list">
             <a class="item item-icon-right"
-               ng-repeat="event in DataService.getAll()"
+               ng-repeat="event in events"
                ui-sref="main.event({eventId: event.id})">
-                <h2 ng-bind-html="event.titre"></h2>
+                <h2 ng-bind-html="event.title"></h2>
 
                 <i class="icon ion-chevron-right"></i>
 
-                <p ng-if="event.categorie">
-                    <em ng-bind-html="event.categorie"></em>
+                <p ng-if="event.categories.length">
+                    <em ng-bind-html="event.categories[0]"></em>
                 </p>
 
                 <p>
-                    {{ event.date_debut }}
-                    <span ng-if="event.date_debut !== event.date_fin">
-                        → {{ event.date_fin }}
+                    {{ event.date_end }}
+                    <span ng-if="event.date_start !== event.date_end">
+                        → {{ event.date_end }}
                     </span>
                 </p>
             </a>
