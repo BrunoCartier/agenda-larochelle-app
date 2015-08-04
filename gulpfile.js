@@ -103,7 +103,13 @@
             'Ionic Server will launch, but you wont be able to interact with it.'
         ));
 
-        ionicServer = spawn('ionic', ['serve', '--livereload', '--lab']);
+        ionicServer = spawn('ionic', [
+            'serve',
+            '--livereload',
+            '--lab',
+            '--address',
+            'localhost'
+        ]);
 
         ionicServer.stdout.on('data', function (buffer) {
             util.log(buffer.toString());
@@ -142,9 +148,8 @@
             .pipe(minifyCss({
                 noAdvanced: true
             }))
-            .pipe(replace('../../', '../'))
-            .pipe(replace('../img/', '../global/img/'))
-            .pipe(replace('assets/fonts', 'fonts'))
+            //.pipe(replace('../../', '../')) Later: See if it was useful
+            .pipe(replace('../fonts', '../assets/fonts'))
             .pipe(CSS_FILTER.restore())
 
             // We're good to go

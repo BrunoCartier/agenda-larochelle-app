@@ -1,7 +1,7 @@
 /*jslint indent: 4, maxlen: 100 */
-/*global angular */
+/*globals angular, window */
 
-(function (ng) {
+(function (ng, win) {
     'use strict';
 
     var app = ng.module('akIonicTpl', [
@@ -12,15 +12,16 @@
         /*global window */
         // https://github.com/driftyco/ionic-starter-tabs/blob/master/js/app.js#L10
         $ionicPlatform.ready(function () {
-            if (window.cordova &&
-                window.cordova.plugins &&
-                window.cordova.plugins.Keyboard) {
-                window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            if (win.cordova &&
+                    win.cordova.plugins &&
+                    win.cordova.plugins.Keyboard) {
+                win.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                win.cordova.plugins.Keyboard.disableScroll(true);
             }
 
-            if (window.StatusBar) {
-                window.StatusBar.styleDefault();
+            if (win.StatusBar) {
+                win.StatusBar.styleDefault();
             }
         });
     }]);
-}(angular));
+}(angular, window));

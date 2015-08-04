@@ -10,17 +10,24 @@ It fits the basic needs we have:
 - LESS compilation
 - Build system (with minification)
 
+### Inspirations
+
+- [cordova-app-hello-world](https://github.com/apache/cordova-app-hello-world)
+- [ionic-app-base](https://github.com/driftyco/ionic-app-base)
+- [ionic-starter-blank](https://github.com/driftyco/ionic-starter-blank)
+- [onic-starter-tabs](https://github.com/driftyco/ionic-starter-tabs)
+
 ### Tools
 Be sure to update to latest versions for:
 
 *(restart your terminal before checking new version)*
 
-- Node (`npm install -g n && n stable` → `node -v` → 0.12.1)
-- NPM (`npm install -g npm` → `npm -v` → 2.7.3)
-- Bower (`npm install -g bower` → `bower -v` → 1.3.12)
-- Cordova (`npm install -g cordova` → `cordova -v` → 2.7.3)
-- Ionic CLI (`npm install -g ionic` → `ionic -v` → 1.3.18)
-- Gulp (`npm install -g gulp` → `gulp -v` → 3.8.11)
+- Node (`npm install -g n && n stable` → `node -v` → 0.12.7)
+- NPM (`npm install -g npm` → `npm -v` → 2.13.3)
+- Bower (`npm install -g bower` → `bower -v` → 1.4.1)
+- Cordova (`npm install -g cordova` → `cordova -v` → 5.1.1)
+- Ionic CLI (`npm install -g ionic` → `ionic -v` → 1.6.4)
+- Gulp (`npm install -g gulp` → `gulp -v` → 3.9.0)
 
 **Yeah, you got some nice tools there :)**
 

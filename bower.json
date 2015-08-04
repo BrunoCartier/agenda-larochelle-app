@@ -3,7 +3,7 @@
   "license": "Fair",
   "private": "true",
   "dependencies": {
-    "ionic": "1.0.0"
+    "ionic": "1.0.1"
   },
   "devDependencies": {
     "lesshat": "~3.0.2"

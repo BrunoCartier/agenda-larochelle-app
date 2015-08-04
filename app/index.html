@@ -2,9 +2,15 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+    <!-- http://www.raymondcamden.com/2015/05/25/important-information-about-cordova-5 -->
+    <meta http-equiv="content-security-policy"
+          content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="format-detection"
+          content="telephone=no" />
+    <meta name="msapplication-tap-highlight"
+          content="no" />
+    <meta name="viewport"
+          content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
     <title>ActivKonnect Ionic Template</title>
 
     <!-- build:css assets/global.css -->
@@ -21,7 +27,8 @@
     <ion-content class="has-header padding">
         <h1>ActivKonnect Ionic Template</h1>
         <h2>An nice boilerplate for awesome tools</h2>
-        <p>
+
+        <p class="big-text">
             <i class="icon ion-heart assertive"></i>
             <i class="icon ion-ionic positive"></i>
         </p>
