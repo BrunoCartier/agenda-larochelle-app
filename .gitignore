@@ -5,6 +5,7 @@ plugins/*
 app/bower_components/*
 node_modules/*
 .idea/*
+projectFilesBackup/*
 *.css
 *.log
 
