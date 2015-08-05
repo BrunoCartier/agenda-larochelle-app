@@ -1,5 +1,36 @@
 <ion-view view-title="Évènement">
     <ion-content class="padding">
         <h3 ng-bind-html="event.title"></h3>
+        <p ng-if="event.date_start === event.date_end">
+            Le {{ event.date_start }}
+        </p>
+
+        <p ng-if="event.date_start !== event.date_end">
+            Du {{ event.date_start }} au {{ event.date_end }}
+        </p>
+
+        <p ng-if="event.location">
+            <strong>Lieu</strong> :
+            <span ng-bind-html="event.location"></span>
+        </p>
+
+        <p ng-if="event.categories.length">
+            <strong>Catégorie</strong> :
+            <span ng-bind-html="event.categories[0]"></span>
+        </p>
+
+        <button class="button button-block button-positive icon-right ion-ios-star-outline">
+            Ajouter à mon agenda
+        </button>
+
+        <p ng-if="event.description">
+            <strong>Description</strong> :
+            <span ng-bind-html="event.description"></span>
+        </p>
+
+        <p ng-if="event.more">
+            <strong>Complément</strong> :
+            <span ng-bind-html="event.more"></span>
+        </p>
     </ion-content>
 </ion-view>

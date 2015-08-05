@@ -82,4 +82,24 @@
             get: get
         };
     }]);
+
+    services.factory('HtmlUnescaper', [function () {
+        // Taken from here: https://goo.gl/4Xs23Q
+        return function (jsonString) {
+            /*global document */
+            var tempElement = document.createElement('div'),
+                out = '',
+                i;
+
+            tempElement.innerHTML = jsonString;
+
+            for (i = 0; i < tempElement.childNodes.length; i += 1) {
+                out += tempElement.childNodes[i].nodeValue;
+            }
+
+            tempElement.removeChild(tempElement.firstChild);
+
+            return out;
+        };
+    }]);
 }(angular));

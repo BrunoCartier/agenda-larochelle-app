@@ -15,12 +15,21 @@
         });
     }]);
 
-    controllers.controller('EventController', ['$scope', '$stateParams', 'DataService', function (
+    controllers.controller('EventController', ['$scope', '$stateParams', 'DataService', 'HtmlUnescaper', function (
         self,
         $stateParams,
-        DataService
+        DataService,
+        htmlUnescaper
     ) {
         DataService.get($stateParams.eventId).then(function (event) {
+            if (event.description) {
+                event.description = htmlUnescaper(event.description);
+            }
+
+            if (event.more) {
+                event.more = htmlUnescaper(event.more);
+            }
+
             self.event = event;
         });
     }]);
