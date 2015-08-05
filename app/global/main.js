@@ -69,7 +69,18 @@
             url: '/agenda',
             views: {
                 'agenda': {
+                    controller: 'AgendaController',
                     templateUrl: 'global/partials/agenda.partial.html'
+                }
+            }
+        });
+
+        $stateProvider.state('main.agenda-event', {
+            url: '/event/:eventId',
+            views: {
+                'agenda': {
+                    controller: 'EventController',
+                    templateUrl: 'global/partials/event.partial.html'
                 }
             }
         });

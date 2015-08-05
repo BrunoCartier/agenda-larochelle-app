@@ -1,5 +1,30 @@
 <ion-view view-title="Mon Agenda">
     <ion-content>
-        <h3 class="padding"><em>(Mon agenda)</em></h3>
+        <div class="list">
+            <p class="item item-text-wrap text-center"
+               ng-if="agendaSize === 0">
+                <strong>Cet agenda semble bien vide.</strong><br />
+                Ce serait une bonne idée d'ajouter des évènements, non ? :)
+            </p>
+
+            <a ng-repeat="(eventId, event) in agenda"
+               class="item item-icon-right"
+               ui-sref="main.agenda-event({ eventId: event.id })">
+                <h2 ng-bind-html="event.title"></h2>
+
+                <i class="icon ion-chevron-right"></i>
+
+                <p ng-if="event.categories.length">
+                    <em ng-bind-html="event.categories[0]"></em>
+                </p>
+
+                <p>
+                    {{ event.date_end }}
+                    <span ng-if="event.date_start !== event.date_end">
+                        → {{ event.date_end }}
+                    </span>
+                </p>
+            </a>
+        </div>
     </ion-content>
 </ion-view>

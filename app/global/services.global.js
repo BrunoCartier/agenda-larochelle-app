@@ -6,6 +6,7 @@
 
     var // Constants
         JSON_URL = 'http://agenda-larochelle.fr/events.json',
+        AGENDA_KEY = 'inAgenda',
 
         // Variables
         services = ng.module('agendaLr.services', []);
@@ -32,9 +33,9 @@
                     locker.put('lastTimestamp', data.timestamp);
                     delete data.timestamp;
 
-                    ng.forEach(data, function (event, eventId) {
-                        allIdentifiers.push(eventId);
-                        locker.put(eventId, event);
+                    ng.forEach(data, function (event) {
+                        allIdentifiers.push(event.id);
+                        locker.put(event.id, event);
                     });
 
                     locker.put('allIdentifiers', allIdentifiers);
@@ -80,6 +81,52 @@
         return {
             getAll: getAll,
             get: get
+        };
+    }]);
+
+    services.factory('AgendaService', ['locker', function (locker) {
+        var // Variables
+            memoryAgenda,
+
+            // Functions
+            getAll,
+            add,
+            remove,
+            isIn;
+
+        getAll = function () {
+            return memoryAgenda;
+        };
+
+        add = function (eventId) {
+            if (memoryAgenda.indexOf(eventId) === -1) {
+                memoryAgenda.push(eventId);
+                locker.put(AGENDA_KEY, memoryAgenda);
+            }
+        };
+
+        remove = function (eventId) {
+            if (memoryAgenda.indexOf(eventId) !== -1) {
+                //console.log('in - index = ', memoryAgenda.indexOf(eventId));
+                memoryAgenda.splice(memoryAgenda.indexOf(eventId), 1);
+                locker.put(AGENDA_KEY, memoryAgenda);
+                console.log('now array is', memoryAgenda);
+            }
+        };
+
+        isIn = function (eventId) {
+            return memoryAgenda.indexOf(eventId) !== -1;
+        };
+
+        (function () {
+            memoryAgenda = locker.get(AGENDA_KEY, []);
+        }());
+
+        return {
+            getAll: getAll,
+            add: add,
+            remove: remove,
+            isIn: isIn
         };
     }]);
 
