@@ -91,6 +91,7 @@
             url: '/settings',
             views: {
                 'settings': {
+                    controller: 'SettingsController',
                     templateUrl: 'global/partials/settings.partial.html'
                 }
             }

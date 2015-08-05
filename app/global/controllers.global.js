@@ -96,4 +96,20 @@
             }, refreshAgenda, true);
         }());
     }]));
+
+    controllers.controller('SettingsController', ['$scope', 'SettingsService', function (
+        self,
+        SettingsService
+    ) {
+        var updateSetting;
+
+        updateSetting = function () {
+            SettingsService.set(self.settings.autoUpdate);
+        };
+
+        self.settings = {
+            autoUpdate: SettingsService.get()
+        };
+        self.updateSetting = updateSetting;
+    }]);
 }(angular));

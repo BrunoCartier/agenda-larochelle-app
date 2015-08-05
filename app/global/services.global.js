@@ -7,6 +7,7 @@
     var // Constants
         JSON_URL = 'http://agenda-larochelle.fr/events.json',
         AGENDA_KEY = 'inAgenda',
+        AUTO_UPDATE_KEY = 'prefAutoUpdate',
 
         // Variables
         services = ng.module('agendaLr.services', []);
@@ -51,7 +52,7 @@
             var deferred = $q.defer();
 
             initialDeferred.promise.then(function () {
-                var identifiers = locker.get('allIdentifiers').slice(0, 10),
+                var identifiers = locker.get('allIdentifiers').slice(0, 20),
                     out = {};
 
                 identifiers.forEach(function (eventId) {
@@ -127,6 +128,33 @@
             add: add,
             remove: remove,
             isIn: isIn
+        };
+    }]);
+
+    services.factory('SettingsService', ['locker', function (locker) {
+        var // Variables
+            autoUpdate,
+
+            // Functions
+            get,
+            set;
+
+        get = function () {
+            return autoUpdate;
+        };
+
+        set = function (val) {
+            autoUpdate = val;
+            locker.put(AUTO_UPDATE_KEY, val);
+        };
+
+        (function () {
+            autoUpdate = locker.get(AUTO_UPDATE_KEY, true);
+        }());
+
+        return {
+            get: get,
+            set: set
         };
     }]);
 
