@@ -12,10 +12,11 @@
         // Variables
         services = ng.module('agendaLr.services', []);
 
-    services.factory('DataService', ['$http', '$q', 'locker', function (
+    services.factory('DataService', ['$http', '$q', 'locker', 'CordovaToast', function (
         $http,
         $q,
-        locker
+        locker,
+        CordovaToast
     ) {
         var // Variables
             initialDeferred = $q.defer(),
@@ -27,7 +28,7 @@
             getAll,
             get;
 
-        initalGetData = function () {
+        initalGetData = function (noToast) {
             initialDeferred = $q.defer();
             fetching = true;
 
@@ -48,10 +49,14 @@
 
                     fetching = false;
                     initialDeferred.resolve();
+                    if (!noToast) {
+                        CordovaToast.showShortBottom('Mise à jour réussie.');
+                    }
                 })
                 .error(function () {
                     fetching = false;
                     initialDeferred.reject();
+                    CordovaToast.showShortBottom('Échec de la récupération des évènements.');
                 });
         };
 
@@ -87,7 +92,7 @@
         };
 
         (function () {
-            initalGetData();
+            initalGetData(true);
         }());
 
         return {
@@ -186,6 +191,37 @@
             tempElement.removeChild(tempElement.firstChild);
 
             return out;
+        };
+    }]);
+
+    // Source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/toast.js
+    // ngCordova is around 100kb, so I don't want to install it here
+    services.factory('CordovaToast', ['$q', '$window', function ($q, $window) {
+        var // Functions
+            showShortBottom;
+
+        showShortBottom = function (message) {
+            var q = $q.defer();
+
+            if ($window.plugins && $window.plugins.toast) {
+                $window
+                    .plugins
+                    .toast
+                    .showShortBottom(message, function (response) {
+                        q.resolve(response);
+                    }, function (error) {
+                        q.reject(error);
+                    });
+            } else {
+                $window.console.info(message);
+                q.resolve();
+            }
+
+            return q.promise;
+        };
+
+        return {
+            showShortBottom: showShortBottom
         };
     }]);
 }(angular));
