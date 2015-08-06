@@ -15,6 +15,8 @@
             .then(function onSuccess(events) {
                 self.events = events;
             });
+
+        self.DataService = DataService;
     }]);
 
     controllers.controller('EventController', [

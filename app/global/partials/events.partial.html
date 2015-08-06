@@ -1,4 +1,16 @@
 <ion-view view-title="Accueil">
+    <ion-nav-buttons side="right">
+        <button class="button button-clear"
+                ng-click="!DataService.isFetching() && DataService.update()"
+                ng-switch="DataService.isFetching()">
+            <ion-spinner icon="lines"
+                         class="spinner-light"
+                         ng-switch-when="true"></ion-spinner>
+
+            <span ng-switch-when="false">Actualiser</span>
+        </button>
+    </ion-nav-buttons>
+
     <ion-content>
         <h3 class="padding-top padding-left">Prochains évènements</h3>
 

@@ -19,13 +19,18 @@
     ) {
         var // Variables
             initialDeferred = $q.defer(),
+            fetching = false,
 
             // Functions
             initalGetData,
+            isFetching,
             getAll,
             get;
 
         initalGetData = function () {
+            initialDeferred = $q.defer();
+            fetching = true;
+
             $http
                 .get(JSON_URL)
                 .success(function (data) {
@@ -41,11 +46,17 @@
 
                     locker.put('allIdentifiers', allIdentifiers);
 
+                    fetching = false;
                     initialDeferred.resolve();
                 })
                 .error(function () {
+                    fetching = false;
                     initialDeferred.reject();
                 });
+        };
+
+        isFetching = function () {
+            return fetching;
         };
 
         getAll = function () {
@@ -80,6 +91,8 @@
         }());
 
         return {
+            isFetching: isFetching,
+            update: initalGetData,
             getAll: getAll,
             get: get
         };
@@ -108,10 +121,8 @@
 
         remove = function (eventId) {
             if (memoryAgenda.indexOf(eventId) !== -1) {
-                //console.log('in - index = ', memoryAgenda.indexOf(eventId));
                 memoryAgenda.splice(memoryAgenda.indexOf(eventId), 1);
                 locker.put(AGENDA_KEY, memoryAgenda);
-                console.log('now array is', memoryAgenda);
             }
         };
 
