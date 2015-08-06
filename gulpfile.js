@@ -6,7 +6,7 @@
 
     var // Constants
         ANGULAR_APP_NAME = 'agendaLr',
-        PUBLICLY_AVAILABLE = ['default', 'dev', 'build', 'jslint'],
+        PUBLICLY_AVAILABLE = ['default', 'dev', 'show', 'build', 'jslint'],
         JS_FILTER,
         CSS_FILTER,
 
@@ -22,6 +22,7 @@
         replace = r('gulp-replace'),
         templateCache = r('gulp-angular-templatecache'),
         rename = r('gulp-rename'),
+        serve = r('gulp-serve'),
 
         // Require, node stuff
         del = r('del'),
@@ -103,7 +104,13 @@
             'Ionic Server will launch, but you wont be able to interact with it.'
         ));
 
-        ionicServer = spawn('ionic', ['serve', '--livereload', '--lab']);
+        ionicServer = spawn('ionic', [
+            'serve',
+            '--livereload',
+            '--lab',
+            '--address',
+            'localhost'
+        ]);
 
         ionicServer.stdout.on('data', function (buffer) {
             util.log(buffer.toString());
@@ -119,6 +126,11 @@
             cb();
         });
     });
+
+    gulp.task('show', ['build'], serve({
+        root: 'www',
+        port: 8101
+    }));
 
     gulp.task('build', ['less', 'clean:www', 'jslint', 'icon'], function () {
         // Step 1: Useref
@@ -142,9 +154,8 @@
             .pipe(minifyCss({
                 noAdvanced: true
             }))
-            .pipe(replace('../../', '../'))
-            .pipe(replace('../img/', '../global/img/'))
-            .pipe(replace('assets/fonts', 'fonts'))
+            //.pipe(replace('../../', '../')) Later: See if it was useful
+            .pipe(replace('../fonts', '../assets/fonts'))
             .pipe(CSS_FILTER.restore())
 
             // We're good to go

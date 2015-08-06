@@ -2,9 +2,15 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+    <!-- http://www.raymondcamden.com/2015/05/25/important-information-about-cordova-5 -->
+    <meta http-equiv="content-security-policy"
+          content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="format-detection"
+          content="telephone=no" />
+    <meta name="msapplication-tap-highlight"
+          content="no" />
+    <meta name="viewport"
+          content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
     <title>Agenda La Rochelle</title>
 
     <!-- build:css assets/global.css -->
@@ -28,6 +34,7 @@
 <script src="global/main.js"></script>
 <script src="global/services.global.js"></script>
 <script src="global/controllers.global.js"></script>
+<script src="global/directives.global.js"></script>
 <!-- endbuild -->
 
 <script src="assets/templates.js"></script><!-- 404 during dev, just for nice on-device optimization -->

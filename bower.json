@@ -2,7 +2,7 @@
   "name": "agenda-larochelle",
   "license": "MIT",
   "dependencies": {
-    "ionic": "1.0.0",
+    "ionic": "1.0.1",
     "angular-locker": "~2.0.2"
   },
   "devDependencies": {
