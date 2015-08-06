@@ -155,7 +155,7 @@
                 noAdvanced: true
             }))
             //.pipe(replace('../../', '../')) Later: See if it was useful
-            .pipe(replace('../fonts', '../assets/fonts'))
+            .pipe(replace('assets/fonts', 'fonts'))
             .pipe(CSS_FILTER.restore())
 
             // We're good to go
