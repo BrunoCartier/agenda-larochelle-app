@@ -10,13 +10,42 @@
         self,
         DataService
     ) {
-        DataService
-            .getAll()
-            .then(function onSuccess(events) {
-                self.events = events;
-            });
+        var // Functions
+            onSuccess,
+            setTwoDays,
+            setWeek;
+
+        onSuccess = function (events) {
+            if (Object.keys(events).length > 0) {
+                self.events = Object
+                    .keys(events)
+                    .map(function (key) {
+                        return events[key];
+                    });
+            } else {
+                self.events = null;
+            }
+        };
+
+        setTwoDays = function () {
+            self.control.mode = 'twoDays';
+            DataService
+                .getTwoDays()
+                .then(onSuccess);
+        };
+
+        setWeek = function () {
+            self.control.mode = 'week';
+            DataService
+                .getWeek()
+                .then(onSuccess);
+        };
 
         self.DataService = DataService;
+        self.setTwoDays = setTwoDays;
+        self.setWeek = setWeek;
+        self.control = {};
+        setTwoDays();
     }]);
 
     controllers.controller('EventController', [

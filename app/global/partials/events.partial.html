@@ -14,9 +14,25 @@
     <ion-content>
         <h3 class="padding-top padding-left">Prochains évènements</h3>
 
+        <div class="button-bar padding-left padding-right padding-bottom">
+            <button class="button"
+                    type="button"
+                    ng-click="setTwoDays()"
+                    ng-class="{'button-outline': control.mode !== 'twoDays'}">
+                Aujourd'hui, demain
+            </button>
+
+            <button class="button"
+                    type="button"
+                    ng-click="setWeek()"
+                    ng-class="{'button-outline': control.mode !== 'week'}">
+                Cette semaine
+            </button>
+        </div>
+
         <div class="list">
             <a class="item item-icon-right"
-               ng-repeat="event in events"
+               ng-repeat="event in events | orderBy:'ts_end'"
                ui-sref="main.event({eventId: event.id})">
                 <h2 ng-bind-html="event.title"></h2>
 
@@ -33,6 +49,11 @@
                     </span>
                 </p>
             </a>
+
+            <p ng-if="!events"
+                    class="item item-text-wrap text-center">
+                <strong>Aucun évènement trouvé :(</strong>
+            </p>
         </div>
     </ion-content>
 </ion-view>

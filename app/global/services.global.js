@@ -12,9 +12,10 @@
         // Variables
         services = ng.module('agendaLr.services', []);
 
-    services.factory('DataService', ['$http', '$q', 'locker', 'CordovaToast', function (
+    services.factory('DataService', ['$http', '$q', '$filter', 'locker', 'CordovaToast', function (
         $http,
         $q,
+        $filter,
         locker,
         CordovaToast
     ) {
@@ -26,6 +27,8 @@
             initalGetData,
             isFetching,
             getAll,
+            getTwoDays,
+            getWeek,
             get;
 
         initalGetData = function (noToast) {
@@ -68,7 +71,7 @@
             var deferred = $q.defer();
 
             initialDeferred.promise.then(function () {
-                var identifiers = locker.get('allIdentifiers').slice(0, 20),
+                var identifiers = locker.get('allIdentifiers'),
                     out = {};
 
                 identifiers.forEach(function (eventId) {
@@ -76,6 +79,28 @@
                 });
 
                 deferred.resolve(out);
+            });
+
+            return deferred.promise;
+        };
+
+        getTwoDays = function () {
+            var deferred = $q.defer();
+
+            getAll().then(function (allEvents) {
+                var output = $filter('twoDays')(allEvents);
+                deferred.resolve(output);
+            });
+
+            return deferred.promise;
+        };
+
+        getWeek = function () {
+            var deferred = $q.defer();
+
+            getAll().then(function (allEvents) {
+                var output = $filter('week')(allEvents);
+                deferred.resolve(output);
             });
 
             return deferred.promise;
@@ -99,6 +124,8 @@
             isFetching: isFetching,
             update: initalGetData,
             getAll: getAll,
+            getTwoDays: getTwoDays,
+            getWeek: getWeek,
             get: get
         };
     }]);
