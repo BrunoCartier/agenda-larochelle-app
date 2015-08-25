@@ -7,6 +7,7 @@
     var app = ng.module('agendaLr', [
         'ionic',
         'angular-locker',
+        'agendaLr.filters',
         'agendaLr.services',
         'agendaLr.controllers'
     ]);
