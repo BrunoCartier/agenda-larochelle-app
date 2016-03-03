@@ -86,14 +86,13 @@
             }
         });
 
-        // Settings
+        // Info
 
-        $stateProvider.state('main.settings', {
-            url: '/settings',
+        $stateProvider.state('main.info', {
+            url: '/info',
             views: {
-                'settings': {
-                    controller: 'SettingsController',
-                    templateUrl: 'global/partials/settings.partial.html'
+                'info': {
+                    templateUrl: 'global/partials/info.partial.html'
                 }
             }
         });
