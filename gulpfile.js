@@ -16,13 +16,14 @@
         less = require('gulp-less'),
         plumber = require('gulp-plumber'),
         useref = require('gulp-useref'),
-        filter = require('gulp-filter'),
+        gulpif = require('gulp-if'),
         uglify = require('gulp-uglify'),
-        minifyCss = require('gulp-minify-css'),
+        cssNano = require('gulp-cssnano'),
         replace = require('gulp-replace'),
         templateCache = require('gulp-angular-templatecache'),
         rename = require('gulp-rename'),
         serve = require('gulp-serve'),
+        merge = require('merge-stream'),
         AutoprefixerPlugin = require('less-plugin-autoprefix'),
         autoprefixer = new AutoprefixerPlugin({browsers: ["last 2 versions"]}),
 
@@ -31,17 +32,15 @@
         spawn = require('child_process').spawn,
         exec = require('child_process').exec;
 
-    JS_FILTER = filter('**/*.js');
-    CSS_FILTER = filter('**/*.css');
+    JS_FILTER = '**/*.js';
+    CSS_FILTER = '**/*.css';
 
-    // Private tasks
-
-    gulp.task('clean:www', function (cb) {
-        del(['www/**/**/*', '!www/.gitkeep'], cb);
+    gulp.task('clean:www', function () {
+        return del(['www/**/**/*', '!www/.gitkeep']);
     });
 
-    gulp.task('clean:bower', function (cb) {
-        del(['app/bower_components/**/**/*', '!app/bower_components/.gitkeep'], cb);
+    gulp.task('clean:bower', function () {
+        return del(['app/bower_components/**/**/*', '!app/bower_components/.gitkeep']);
     });
 
     gulp.task('less', function () {
@@ -62,11 +61,9 @@
                     util.log(util.colors.red(err));
                 }
 
-                cb();
+                cb(err);
             });
     });
-
-    // Public tasks
 
     gulp.task('default', function () {
         var msg = util.colors.bold('# Welcome to this awesome gulpfile #\n') +
@@ -92,7 +89,7 @@
                 util.log(util.colors.white.bgBlack(stdout));
             }
 
-            cb();
+            cb(err);
         });
     });
 
@@ -134,48 +131,45 @@
     }));
 
     gulp.task('build', ['less', 'clean:www', 'jslint', 'icon'], function () {
-        // Step 1: Useref
-        var assets = useref.assets();
+        var main,
+            partials,
+            fonts;
 
-        gulp.src('app/index.html')
-
+        main = gulp.src('app/index.html')
             // Take all referenced assets in index.html
-            .pipe(assets)
+            .pipe(useref())
 
             // JS concat & soft minify
-            .pipe(JS_FILTER)
-            .pipe(uglify({
+            .pipe(gulpif(JS_FILTER, uglify({
                 mangle: false,
                 compress: false
-            }))
-            .pipe(JS_FILTER.restore())
+            })))
 
             // CSS concat & soft minify, with paths fix
-            .pipe(CSS_FILTER)
-            .pipe(minifyCss({
-                noAdvanced: true
-            }))
-            //.pipe(replace('../../', '../')) Later: See if it was useful
-            .pipe(replace('assets/fonts', 'fonts'))
-            .pipe(CSS_FILTER.restore())
+            .pipe(gulpif(CSS_FILTER, cssNano()))
+            .pipe(gulpif(CSS_FILTER, replace('../fonts', '../assets/fonts')))
 
             // We're good to go
-            .pipe(assets.restore())
-            .pipe(useref())
             .pipe(gulp.dest('www/'));
 
         // Step 2: Partials caching
-        gulp.src('app/**/*.partial.html')
+        partials = gulp.src('app/**/*.partial.html')
             .pipe(templateCache({
                 module: ANGULAR_APP_NAME
             }))
             .pipe(gulp.dest('www/assets/'));
 
         // Step 3: Copy the fonts
-        gulp.src(['app/bower_components/ionic/release/fonts/*']) // Add yours if needed
+        fonts = gulp.src(['app/bower_components/ionic/release/fonts/*']) // Add yours if needed
             .pipe(rename({
                 dirname: ''
             }))
             .pipe(gulp.dest('www/assets/fonts/'));
+
+        return merge(
+            main,
+            partials,
+            fonts
+        );
     });
 }());
