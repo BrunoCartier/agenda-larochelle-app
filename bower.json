@@ -5,8 +5,5 @@
     "ionic": "~1.2.4",
     "angular-locker": "~2.0.4",
     "moment": "~2.11.2"
-  },
-  "devDependencies": {
-    "lesshat": "~3.0.2"
   }
 }

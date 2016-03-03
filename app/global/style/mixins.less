@@ -1,10 +1,9 @@
 @charset "UTF-8";
 
-@import (reference) "../../bower_components/lesshat/build/lesshat";
 @import (reference) "variables";
 
 // Single liner
-.single-liner {
+.single-liner() {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -12,4 +11,9 @@
 
 .single-liner {
   .single-liner();
+}
+
+.size(@size) {
+  height: @size;
+  width: @size;
 }

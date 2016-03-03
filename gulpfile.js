@@ -1,7 +1,7 @@
 /*jslint indent: 4, maxlen: 100, nomen: true */
-/*globals require, __dirname */
+/*global require */
 
-(function (r, ENV_DIR_NAME) {
+(function () {
     'use strict';
 
     var // Constants
@@ -11,24 +11,25 @@
         CSS_FILTER,
 
         // Require, gulp stuff
-        gulp = r('gulp'),
-        util = r('gulp-util'),
-        less = r('gulp-less'),
-        plumber = r('gulp-plumber'),
-        useref = r('gulp-useref'),
-        filter = r('gulp-filter'),
-        uglify = r('gulp-uglify'),
-        minifyCss = r('gulp-minify-css'),
-        replace = r('gulp-replace'),
-        templateCache = r('gulp-angular-templatecache'),
-        rename = r('gulp-rename'),
-        serve = r('gulp-serve'),
+        gulp = require('gulp'),
+        util = require('gulp-util'),
+        less = require('gulp-less'),
+        plumber = require('gulp-plumber'),
+        useref = require('gulp-useref'),
+        filter = require('gulp-filter'),
+        uglify = require('gulp-uglify'),
+        minifyCss = require('gulp-minify-css'),
+        replace = require('gulp-replace'),
+        templateCache = require('gulp-angular-templatecache'),
+        rename = require('gulp-rename'),
+        serve = require('gulp-serve'),
+        AutoprefixerPlugin = require('less-plugin-autoprefix'),
+        autoprefixer = new AutoprefixerPlugin({browsers: ["last 2 versions"]}),
 
         // Require, node stuff
-        del = r('del'),
-        path = r('path'),
-        spawn = r('child_process').spawn,
-        exec = r('child_process').exec;
+        del = require('del'),
+        spawn = require('child_process').spawn,
+        exec = require('child_process').exec;
 
     JS_FILTER = filter('**/*.js');
     CSS_FILTER = filter('**/*.css');
@@ -47,7 +48,7 @@
         return gulp.src('app/**/**/*.less')
             .pipe(plumber())
             .pipe(less({
-                paths: [path.join(ENV_DIR_NAME, 'less', 'includes')]
+                plugins: [autoprefixer]
             }))
             .pipe(gulp.dest('app/'));
     });
@@ -177,4 +178,4 @@
             }))
             .pipe(gulp.dest('www/assets/fonts/'));
     });
-}(require, __dirname));
+}());
