@@ -4,7 +4,12 @@
     <meta charset="utf-8" />
     <!-- http://www.raymondcamden.com/2015/05/25/important-information-about-cordova-5 -->
     <meta http-equiv="content-security-policy"
-          content="default-src 'self' agenda-larochelle.fr data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+          content="
+          default-src 'self' agenda-larochelle.fr ws://127.0.0.1:35729 data: gap: https://ssl.gstatic.com 'unsafe-eval';
+          style-src 'self' 'unsafe-inline';
+          script-src 'self' http://127.0.0.1:35729 'unsafe-inline';
+          media-src *"
+          >
     <meta name="format-detection"
           content="telephone=no" />
     <meta name="msapplication-tap-highlight"
