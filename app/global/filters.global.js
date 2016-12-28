@@ -12,8 +12,9 @@
 
     makeFilter = function (duration) {
         return function () {
-            //var now = m();
-            var now = m('2015-09-20'); // Debug
+            var now = m();
+            // Debug
+            //var now = m('2015-09-20');
 
             return function (input) {
                 var output = {};
@@ -35,4 +36,5 @@
 
     filters.filter('twoDays', makeFilter(2 * 24));
     filters.filter('week', makeFilter(7 * 24));
+    filters.filter('month', makeFilter(30 * 24));
 }(angular, moment));

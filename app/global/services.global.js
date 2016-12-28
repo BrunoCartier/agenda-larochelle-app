@@ -28,6 +28,7 @@
             getAll,
             getTwoDays,
             getWeek,
+            getMonth,
             get;
 
         initalGetData = function (noToast) {
@@ -105,6 +106,17 @@
             return deferred.promise;
         };
 
+        getMonth = function () {
+            var deferred = $q.defer();
+
+            getAll().then(function (allEvents) {
+                var output = $filter('month')(allEvents);
+                deferred.resolve(output);
+            });
+
+            return deferred.promise;
+        };
+
         get = function (eventId) {
             var deferred = $q.defer();
 
@@ -125,6 +137,7 @@
             getAll: getAll,
             getTwoDays: getTwoDays,
             getWeek: getWeek,
+            getMonth: getMonth,
             get: get
         };
     }]);
@@ -212,7 +225,7 @@
                         q.reject(error);
                     });
             } else {
-                $window.console.info(message);
+                $window.console.info('Not on device. Should show message:\n\t- ' + message);
                 q.resolve();
             }
 

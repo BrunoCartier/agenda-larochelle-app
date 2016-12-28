@@ -48,7 +48,10 @@
         self.setWeek = setWeek;
         self.control = {};
         self.isLoading = true;
-        setTwoDays();
+        // setTwoDays();
+        DataService
+            .getMonth()
+            .then(onSuccess);
     }]);
 
     controllers.controller('EventController', [
