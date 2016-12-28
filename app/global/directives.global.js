@@ -4,20 +4,30 @@
 (function (ng) {
     'use strict';
 
-    var app = ng.module('akIonicTpl');
+    var app = ng.module('agendaLr');
 
-    app.directive('akIonicVersion', [function () {
-        var controller;
+    app.directive('extHref', ['$window', function ($window) {
+        function link(scope, element) {
+            var c = $window.cordova;
 
-        controller = ['$window', '$scope', function ($window, self) {
-            self.version = $window.ionic.version;
-        }];
+            element.bind('click', function (event) {
+                event.preventDefault();
+
+                if (c && c.InAppBrowser) {
+                    c.InAppBrowser.open(scope.url, '_system');
+                } else {
+                    // Not on device ➞ Open in wew tab
+                    $window.open(scope.url, '_blank');
+                }
+            });
+        }
 
         return {
-            restrict: 'E',
-            controller: controller,
-            templateUrl: 'global/partials/ionic-version.partial.html',
-            scope: true
+            restrict: 'A',
+            link: link,
+            scope: {
+                url: '@extHref'
+            }
         };
     }]);
 }(angular));
