@@ -25,6 +25,8 @@
             } else {
                 self.events = null;
             }
+
+            self.isLoading = false;
         };
 
         setTwoDays = function () {
@@ -45,6 +47,7 @@
         self.setTwoDays = setTwoDays;
         self.setWeek = setWeek;
         self.control = {};
+        self.isLoading = true;
         setTwoDays();
     }]);
 

@@ -50,7 +50,12 @@
                 </p>
             </a>
 
-            <p ng-if="!events"
+            <p ng-if="isLoading"
+               class="item item-text-wrap text-center">
+                <strong>Chargement...</strong>
+            </p>
+
+            <p ng-if="!isLoading && !events"
                     class="item item-text-wrap text-center">
                 <strong>Aucun évènement trouvé :(</strong>
             </p>
