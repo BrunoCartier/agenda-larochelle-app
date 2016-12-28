@@ -64,18 +64,26 @@
         AgendaService,
         htmlUnescaper
     ) {
+        var htmlFromSanitizedEvent;
+
+        htmlFromSanitizedEvent = function (event) {
+            event.title = htmlUnescaper(event.title);
+
+            if (event.description) {
+                event.description = htmlUnescaper(event.description);
+            }
+
+            if (event.more) {
+                event.more = htmlUnescaper(event.more);
+            }
+
+            return event;
+        };
+
         DataService
             .get($stateParams.eventId)
             .then(function onSuccess(event) {
-                if (event.description) {
-                    event.description = htmlUnescaper(event.description);
-                }
-
-                if (event.more) {
-                    event.more = htmlUnescaper(event.more);
-                }
-
-                self.event = event;
+                self.event = htmlFromSanitizedEvent(event);
             });
 
         self.AgendaService = AgendaService;
