@@ -6,14 +6,30 @@
 
     var controllers = ng.module('agendaLr.controllers', []);
 
-    controllers.controller('EventsController', ['$scope', 'DataService', function (
+    controllers.controller('EventsController', [
+        '$scope',
+        'DataService',
+        '$ionicPlatform'
+    ].concat([function (
         self,
-        DataService
+        DataService,
+        $ionicPlatform
     ) {
         var // Functions
+            hideSplash,
             onSuccess,
             setTwoDays,
             setWeek;
+
+        hideSplash = function () {
+            /*global setTimeout, navigator */
+
+            $ionicPlatform.ready(function () {
+                setTimeout(function () {
+                    navigator.splashscreen.hide();
+                }, 250);
+            });
+        };
 
         onSuccess = function (events) {
             if (Object.keys(events).length > 0) {
@@ -27,6 +43,7 @@
             }
 
             self.isLoading = false;
+            hideSplash();
         };
 
         setTwoDays = function () {
@@ -52,7 +69,7 @@
         DataService
             .getMonth()
             .then(onSuccess);
-    }]);
+    }]));
 
     controllers.controller('EventController', [
         '$scope',

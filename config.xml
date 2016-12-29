@@ -16,7 +16,14 @@
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-statusbar" spec="~2.2.1" />
-    <preference name="StatusBarBackgroundColor" value="#014a88" />
+    <preference name="StatusBarBackgroundColor" value="#097492" />
+    <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="false"/>
+    <preference name="FadeSplashScreenDuration" value="300"/>
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
