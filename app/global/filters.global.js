@@ -11,12 +11,20 @@
         filters = ng.module('agendaLr.filters', []);
 
     filters.filter('moment', function () {
+        var cache = {};
+
         return function (inputString, wantedFormat) {
             if (!wantedFormat) {
                 wantedFormat = 'L';
             }
 
-            return moment(inputString).format(wantedFormat);
+            var key = inputString + '-' + wantedFormat;
+
+            if (!cache.hasOwnProperty(key)) {
+                cache[key] = moment(inputString).format(wantedFormat);
+            }
+
+            return cache[key];
         };
     });
 
@@ -28,6 +36,10 @@
 
             return function (input) {
                 var output = {};
+
+                if (Object.keys(input).length === 0) {
+                    return input;
+                }
 
                 ng.forEach(input, function (ev, key) {
                     var startDiff = m(ev.date_start).diff(now, 'hours'),

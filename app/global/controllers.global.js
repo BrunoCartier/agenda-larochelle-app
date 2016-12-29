@@ -70,17 +70,19 @@
         var htmlFromSanitizedEvent;
 
         htmlFromSanitizedEvent = function (event) {
-            event.title = htmlUnescaper(event.title);
+            var out = ng.copy(event);
+
+            out.title = htmlUnescaper(event.title);
 
             if (event.description) {
-                event.description = htmlUnescaper(event.description);
+                out.description = htmlUnescaper(event.description);
             }
 
             if (event.more) {
-                event.more = htmlUnescaper(event.more);
+                out.more = htmlUnescaper(event.more);
             }
 
-            return event;
+            return out;
         };
 
         DataService

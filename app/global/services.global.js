@@ -21,6 +21,7 @@
         var // Variables
             initialDeferred = $q.defer(),
             fetching = false,
+            store = {},
 
             // Functions
             initalGetData,
@@ -38,20 +39,13 @@
             $http
                 .get(JSON_URL)
                 .success(function (data) {
-                    var allIdentifiers = [];
-
                     locker.put('lastTimestamp', data.timestamp);
                     delete data.timestamp;
 
-                    ng.forEach(data, function (event) {
-                        allIdentifiers.push(event.id);
-                        locker.put(event.id, event);
-                    });
-
-                    locker.put('allIdentifiers', allIdentifiers);
-
+                    store = data;
                     fetching = false;
                     initialDeferred.resolve();
+
                     if (!noToast) {
                         CordovaToast.showShortBottom('Mise à jour réussie.');
                     }
@@ -71,14 +65,7 @@
             var deferred = $q.defer();
 
             initialDeferred.promise.then(function () {
-                var identifiers = locker.get('allIdentifiers'),
-                    out = {};
-
-                identifiers.forEach(function (eventId) {
-                    out[eventId] = locker.get(eventId);
-                });
-
-                deferred.resolve(out);
+                deferred.resolve(store);
             });
 
             return deferred.promise;
@@ -121,7 +108,7 @@
             var deferred = $q.defer();
 
             initialDeferred.promise.then(function () {
-                deferred.resolve(locker.get(eventId, null));
+                deferred.resolve(store[eventId]);
             });
 
             return deferred.promise;
