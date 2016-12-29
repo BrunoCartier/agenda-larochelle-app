@@ -15,6 +15,8 @@
     <plugin name="cordova-plugin-x-toast" spec="~2.2.0" />
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
     <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-statusbar" spec="~2.2.1" />
+    <preference name="StatusBarBackgroundColor" value="#014a88" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
