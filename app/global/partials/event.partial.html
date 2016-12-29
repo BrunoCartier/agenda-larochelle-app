@@ -2,11 +2,12 @@
     <ion-content class="padding">
         <h3 ng-bind-html="event.title"></h3>
         <p ng-if="event.date_start === event.date_end">
-            Le {{ event.date_start }}
+            Le {{ event.date_start | moment:'dddd LL' }}
         </p>
 
         <p ng-if="event.date_start !== event.date_end">
-            Du {{ event.date_start }} au {{ event.date_end }}
+            Du {{ event.date_start | moment:'dddd LL' }}
+            au {{ event.date_end | moment:'dddd LL' }}
         </p>
 
         <p ng-if="event.location">

@@ -10,6 +10,16 @@
         // Variables
         filters = ng.module('agendaLr.filters', []);
 
+    filters.filter('moment', function () {
+        return function (inputString, wantedFormat) {
+            if (!wantedFormat) {
+                wantedFormat = 'L';
+            }
+
+            return moment(inputString).format(wantedFormat);
+        };
+    });
+
     makeFilter = function (duration) {
         return function () {
             var now = m();
