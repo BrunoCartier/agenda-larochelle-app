@@ -32,13 +32,16 @@
 
 <ion-nav-view></ion-nav-view>
 
+<!-- build:js assets/libs.js -->
+<script src="bower_components/ionic/release/js/ionic.bundle.js"></script>
+<script src="bower_components/angular-locker/dist/angular-locker.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/moment/locale/fr.js"></script>
+<!-- endbuild -->
+
 <script src="cordova.js" type="text/javascript"></script><!-- 404 during dev -->
 
-<!-- build:js assets/global.js -->
-<script src="bower_components/ionic/release/js/ionic.bundle.min.js"></script>
-<script src="bower_components/angular-locker/dist/angular-locker.min.js"></script>
-<script src="bower_components/moment/min/moment.min.js"></script>
-<script src="bower_components/moment/locale/fr.js"></script>
+<!-- build:js assets/app.js -->
 <script src="global/main.js"></script>
 <script src="global/filters.global.js"></script>
 <script src="global/services.global.js"></script>
